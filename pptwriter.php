@@ -1,8 +1,10 @@
 <?php
 
+//Extraction and mail functions
 require_once 'extractorfunctions.php';
 include 'mailfunctions.php';
 
+//PHP Office library.
 require_once 'PhpOffice/PhpPresentation/Autoloader.php';
 \PhpOffice\PhpPresentation\Autoloader::register();
 
@@ -18,6 +20,14 @@ use PhpOffice\PhpPresentation\Style\Alignment;
 use PhpOffice\PhpPresentation\Slide\Background\Color;
 use PhpOffice\PhpPresentation\Style\Color as StyleColor;
 use \PhpOffice\PhpPresentation\Slide\Background\Image;
+
+
+
+
+
+//extracting lyrics
+
+
 $pptobject = new PhpPresentation();
 
 $slide=array(); $shape=array(); $textRun=array(); $para_array=array();
@@ -36,16 +46,20 @@ for($i=0; $i<=8;$i++){
 
 $para_array= array_reduce($para_2d_array, 'array_merge', array());
 
+
+//Creating the slides
+
+
 $slide0 = $pptobject->getActiveSlide();
 
-
+//Opening slide
 $shape0 = $slide0->createRichTextShape()
       ->setHeight(300)
       ->setWidth(600)
       ->setOffsetX(170)
       ->setOffsetY(180);
 $shape0->getActiveParagraph()->getAlignment()->setHorizontal( Alignment::HORIZONTAL_CENTER );
-$textRun0 = $shape0->createTextRun("You're using Lyric2PPT By Winston Marvel Jude ");
+$textRun0 = $shape0->createTextRun("Lyric2PPT");
 $textRun0->getFont()->setBold(true)
                    ->setSize(50)
                    ->setColor( new StyleColor( '000' ) );
@@ -57,7 +71,7 @@ $slide0->setBackground($oBkgColor);
 
 
 
-
+//Generating ppt based on each extracted para
 foreach($para_array as $para){
 
 
@@ -89,6 +103,9 @@ $slide->setBackground($oBkgColor);
 
 
 
+
+//Writing the ppt to a file
+
 $oWriterPPTX = IOFactory::createWriter($pptobject, 'PowerPoint2007');
 
  
@@ -112,7 +129,7 @@ $oWriterPPTX = IOFactory::createWriter($pptobject, 'PowerPoint2007');
 
 
 
-
+//Mailing the ppt
 
 /*
 if(!empty($_POST["email"])){
