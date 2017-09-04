@@ -4,7 +4,7 @@
 
 function urlfixer($url){
 
-	if (strpos($url, "http://") === false) {
+	if (strpos($url, "http://") === false && strpos($url, "https://") === false) {
     $url = "http://".$url;
    }
    return $url;
