@@ -130,7 +130,7 @@ $xpath = new DOMXpath($htmldoc);
 $classname="verse";
 $nodes= $xpath->query("//*[contains(concat(' ', normalize-space(@class), ' '), ' $classname ')]");
 
-$title_node= $xpath->query('//header/h1[1]');
+$title_node= $xpath->query('//h1[1]');
 foreach($title_node as $node1){
 $title[]="\r\n \r\n \r\n \r\n".strtoupper($node1->textContent);}
 
