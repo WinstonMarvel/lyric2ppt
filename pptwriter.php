@@ -91,7 +91,7 @@ $shape = $slide->createRichTextShape()
 $textRun = $shape->createTextRun($para);
 $textRun->getFont()->setName('Arial');
 $textRun->getFont()->setBold(false)
-                   ->setSize(36)
+                   ->setSize(42)
                    ->setColor( new StyleColor( '#000' ) );
 $shape->getActiveParagraph()->getAlignment()->setHorizontal( Alignment::HORIZONTAL_CENTER );
 
